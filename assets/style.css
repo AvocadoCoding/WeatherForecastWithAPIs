@@ -8,3 +8,8 @@
     color:rgb(194, 189, 189);
     background-color:rgb(194, 189, 189);
   }
+
+  #search-input{
+    border-width:3px;
+    border-color:gray;
+  }
