@@ -37,3 +37,13 @@ function addItem(add_item) {
        console.log(add_item + ' already exists')
     }
   }
+
+// Code to prevent a user entering a value with 'enter', button must be clicked
+  $(document).ready(function() {
+    $(window).keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+    });
+  });
