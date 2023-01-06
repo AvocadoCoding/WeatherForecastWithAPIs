@@ -15,12 +15,14 @@ $("#search-button").on("click", function (event) {
 
 
 
-// Save user entries into local storage
+
 
 // Setup local storage so that is storing an array
-var a = [];
+/* var a = [];
 a.push(JSON.parse(localStorage.getItem('locations')));
-localStorage.setItem('locations', JSON.stringify(a));
+localStorage.setItem('locations', JSON.stringify(a)); */
+
+// Save user entries into local storage
 
 function addItem(add_item) {
 
