@@ -1,7 +1,7 @@
 let userInput = $("#search-input");
 
 
-
+// click functionality added to search button
 $("#search-button").on("click", function (event) {
     event.preventDefault();
     searchInput = $("#search-input").val();
