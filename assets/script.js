@@ -1,7 +1,51 @@
 let userInput = $("#search-input");
 
-// for loop to create new buttons from local storage on page reload 
+// To do:
+// - call lat and lon api - then input info into api for calling weather - use ajax GET funciton to call API's and use response to take appropriate data from them
+// - dynamically create weather card elements for forecast, asigning values from API info- also need function to trigger api whne button is clicked
 
+
+
+
+function displayWeatherInfo (locationName)  {
+  
+    // const movieName = $(this).attr('data-name');
+  
+  
+    console.log(locationName);
+  
+  
+    /* var queryURL = "https://www.omdbapi.com/?t=" + movieName + "&apikey=trilogy";
+  
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+  
+      $("#movies-view").empty()
+  
+      var movieDiv = $("<div class='movie'>");
+  
+  
+      var rating = response.Rated;
+      var released = response.Released;
+      var plot = response.Plot;
+      var imgURL = response.Poster;
+  
+      var pOne = $("<p>").text("Rating: " + rating);
+      var pTwo = $("<p>").text("Released: " + released);
+      var pThree = $("<p>").text("Plot: " + plot);
+      var image = $("<img>").attr("src", imgURL);
+  
+      movieDiv.append(pOne,pTwo,pThree,image);
+      $("#movies-view").prepend(movieDiv);
+  
+  
+    }); */
+  }
+
+// for loop to create new buttons from local storage on page reload 
 
 
 // click functionality added to search button
@@ -12,14 +56,23 @@ $("#search-button").on("click", function (event) {
     addItem(searchInput);
     // create and append button
     appendButton();
+    displayWeatherInfo(searchInput);
 })
 
-// click functionality added to appended buttons
-$(".added-buttons").on("click", function (event) {
+// This command calls the displayWeatherInfoAppended function when an element in the document
+// in the class ".added-buttons" is clicked on 
+$(document).on("click",".added-buttons",displayWeatherInfoAppended);
+
+
+// This function takes the data name value of the selected element and sends it
+// to the displayWeatherInfo function
+
+function displayWeatherInfoAppended(event){
     event.preventDefault();
-    
+    console.log($(this).attr('data-name'));
+    displayWeatherInfo($(this).attr('data-name'));
 
-})
+}
 
 
 
@@ -88,3 +141,5 @@ function appendButton(){
 
 // Add buttons to page from local storage when page is reloaded
 appendButton();
+
+
