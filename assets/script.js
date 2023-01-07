@@ -1,7 +1,7 @@
 let APIKey = "4b54aff90bddf446717e325ddf519d94";
 
 // To do:
-// - dynamically create weather card elements for forecast, asigning values from API info
+// - dynamically create weather card elements for forecast, assigning values from API info
 
 
 
@@ -36,7 +36,83 @@ function displayWeatherInfo (locationName)  {
         method: "GET"
       }).then(function(response) {
         console.log(response);
+
+        // location name as written in API
+        var locationAPI = response.city.name;
+        console.log(locationAPI);
+
+        // for loop to get date, image, temp, wind and humidity data for the next 5 days
+
+        // var weatherArray = response.list;
+
+    /*     for (var i = 0; i < response.list.length; i++) {
+      
+          // Then dynamicaly generating buttons for each location in the array
+          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+          var newBtn = $("<button>");
+          // Adding a type to the button
+          // newBtn.addType("button");
+          // Adding a class of movie to our button
+          newBtn.addClass("btn btn-secondary btn-block w-100 rounded mt-3 added-buttons");
+          // Adding a data-attribute
+          newBtn.attr("data-name", locations[i]);
+          // Providing the initial button text
+          newBtn.text(locations[i]);
+          // Adding the button to the "list-group" div
+          $(".list-group").append(newBtn);
+        } */
+        
+        /* 
+        // date on that day and next 5 days
+        var todayDate = response.list[0].dt_txt; // need to convert to date only
+        var oneDayAfterDate = 
+        var twoDayAfterDate
+        var threeDayAfterDate
+        var fourDayAfterDate
+        var fiveDayAfterDate
+        
+        // weather image on that day and next 5 days
+        var todayImageURL = response.list[0].weather[0].icon; // need to put icon number into open weather url for images
+        var oneDayAfterImageURL
+        var twoDayAfterImageURL
+        var threeDayAfterImageURL
+        var fourDayAfterImageURL
+        var fiveDayAfterImageURL
+        
+        // temp on that day and next 5 days
+        var todayTempDegC = response.list[0].main.temp - 273.15; // convert temp value from kelvins to deg C
+        var oneDayAfterTempDegC
+        var twoDayAfterTempDegCL
+        var threeDayAfterTempDegC
+        var fourDayAfterTempDegC
+        var fiveDayAfterTempDegC 
+        
+        // wind speed on that day and next 5 days
+        var windKPH = response.list[0].wind.speed;
+
+
+        // humidity on that day and next 5 days
+        var humidity = response.list[0].main.humidity;
+ */
+        //Empty weather today section before adding new information
+        $("#today").empty();
+
+        var cardDiv= $("<div class='card'>");
+
+        
+        // append card div to weather today section
+        $("#today").append(cardDiv);
+
+        var cardBody = $("<div class='card-body'>");
+
+        // append card body to card div
+        cardDiv.append(cardBody);
+
+        var cardHeader = $(`<h5 class='card-title'> ${locationAPI} <h5> `);
           
+        // append card header to card div
+        cardBody.append(cardHeader);
+
           
       /*   const lat = response[0].lat;
         const lon = response[0].lon;
