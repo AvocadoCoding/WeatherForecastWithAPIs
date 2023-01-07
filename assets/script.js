@@ -1,8 +1,7 @@
 let APIKey = "4b54aff90bddf446717e325ddf519d94";
 
 // To do:
-// - call lat and lon api - then input info into api for calling weather - use ajax GET funciton to call API's and use response to take appropriate data from them
-// - dynamically create weather card elements for forecast, asigning values from API info- also need function to trigger api when button is clicked
+// - dynamically create weather card elements for forecast, asigning values from API info
 
 
 
@@ -15,7 +14,7 @@ function displayWeatherInfo (locationName)  {
     console.log(locationName);
   
   
-    var queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=5&appid=${APIKey}`;
+    let queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=5&appid=${APIKey}`;
   
     $.ajax({
       url: queryURL,
@@ -28,6 +27,21 @@ function displayWeatherInfo (locationName)  {
       const lon = response[0].lon;
       console.log(lat);
       console.log(lon);  
+
+
+      let queryURL2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+
+      $.ajax({
+        url: queryURL2,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+          
+          
+      /*   const lat = response[0].lat;
+        const lon = response[0].lon;
+        console.log(lat);
+        console.log(lon);   */
 
 
      /*  $("#movies-view").empty()
@@ -47,6 +61,8 @@ function displayWeatherInfo (locationName)  {
   
       movieDiv.append(pOne,pTwo,pThree,image);
       $("#movies-view").prepend(movieDiv); */
+
+        });
   
   
     }); 
