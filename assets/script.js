@@ -41,35 +41,17 @@ function displayWeatherInfo (locationName)  {
         var locationAPI = response.city.name;
         console.log(locationAPI);
 
-        // for loop to get date, image, temp, wind and humidity data for the next 5 days
+        // variables fordate, image, temp, wind and humidity data for the next 5 days
 
         // var weatherArray = response.list;
-
-    /*     for (var i = 0; i < response.list.length; i++) {
-      
-          // Then dynamicaly generating buttons for each location in the array
-          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-          var newBtn = $("<button>");
-          // Adding a type to the button
-          // newBtn.addType("button");
-          // Adding a class of movie to our button
-          newBtn.addClass("btn btn-secondary btn-block w-100 rounded mt-3 added-buttons");
-          // Adding a data-attribute
-          newBtn.attr("data-name", locations[i]);
-          // Providing the initial button text
-          newBtn.text(locations[i]);
-          // Adding the button to the "list-group" div
-          $(".list-group").append(newBtn);
-        } */
         
-        /* 
         // date on that day and next 5 days
-        var todayDate = response.list[0].dt_txt; // need to convert to date only
-        var oneDayAfterDate = 
-        var twoDayAfterDate
-        var threeDayAfterDate
-        var fourDayAfterDate
-        var fiveDayAfterDate
+        var todayDate = moment().format('DD/MM/YYYY'); // use moment to get today's date
+        var oneDayAfterDate = (moment().add(1, 'days')).format('DD/MM/YYYY'); // Today + 1 day
+        var twoDayAfterDate = (moment().add(2, 'days')).format('DD/MM/YYYY'); // Today + 2 days
+        var threeDayAfterDate = (moment().add(3, 'days')).format('DD/MM/YYYY'); // Today + 3 days
+        var fourDayAfterDate = (moment().add(4, 'days')).format('DD/MM/YYYY'); // Today + 4 days
+        var fiveDayAfterDate = (moment().add(5, 'days')).format('DD/MM/YYYY'); // Today + 5 days
         
         // weather image on that day and next 5 days
         var todayImageURL = response.list[0].weather[0].icon; // need to put icon number into open weather url for images
@@ -93,7 +75,7 @@ function displayWeatherInfo (locationName)  {
 
         // humidity on that day and next 5 days
         var humidity = response.list[0].main.humidity;
- */
+
         //Empty weather today section before adding new information
         $("#today").empty();
 
@@ -108,7 +90,7 @@ function displayWeatherInfo (locationName)  {
         // append card body to card div
         cardDiv.append(cardBody);
 
-        var cardHeader = $(`<h5 class='card-title'> ${locationAPI} <h5> `);
+        var cardHeader = $(`<h3 class='card-title'> ${locationAPI} (${todayDate}) <h3> `);
           
         // append card header to card div
         cardBody.append(cardHeader);
@@ -120,9 +102,8 @@ function displayWeatherInfo (locationName)  {
 
         // append unordered list to cardBody and append list itmes to ul
         cardBody.append(todayList);
-        todayList.append(todayLineOne);
-        todayList.append(todayLineTwo);
-        todayList.append(todayLineThree);
+        todayList.append(todayLineOne, todayLineTwo, todayLineThree);
+    
           
 
 
