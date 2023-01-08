@@ -62,20 +62,30 @@ function displayWeatherInfo (locationName)  {
         var fourDayAfterImageURL= `http://openweathermap.org/img/wn/${response.list[32].weather[0].icon}@2x.png`;
         var fiveDayAfterImageURL= `http://openweathermap.org/img/wn/${response.list[39].weather[0].icon}@2x.png`;
         
-        // temp on that day and next 5 days
-        var todayTempDegC = response.list[0].main.temp - 273.15; // convert temp value from kelvins to deg C
-        var oneDayAfterTempDegC
-        var twoDayAfterTempDegCL
-        var threeDayAfterTempDegC
-        var fourDayAfterTempDegC
-        var fiveDayAfterTempDegC 
+        // temp on that day and next 5 days, convert temp value from kelvin to deg C and round to 2dp
+        var todayTempDegC = Math.round(((response.list[0].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
+        var oneDayAfterTempDegC = Math.round(((response.list[8].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
+        var twoDayAfterTempDegCL = Math.round(((response.list[16].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
+        var threeDayAfterTempDegC = Math.round(((response.list[24].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
+        var fourDayAfterTempDegC = Math.round(((response.list[32].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
+        var fiveDayAfterTempDegC = Math.round(((response.list[39].main.temp - 273.15) + Number.EPSILON) * 100) / 100;  
         
         // wind speed on that day and next 5 days
-        var windKPH = response.list[0].wind.speed;
+        var todayWindKPH = response.list[0].wind.speed;
+        var oneDayAfterWindKPH = response.list[8].wind.speed;
+        var twoDayAfterWindKPH = response.list[16].wind.speed;
+        var threeDayAfterWindKPH = response.list[24].wind.speed;
+        var fourDayAfterWindKPH = response.list[32].wind.speed;
+        var fiveDayAfterWindKPH = response.list[39].wind.speed;
 
 
         // humidity on that day and next 5 days
-        var humidity = response.list[0].main.humidity;
+        var todayHumidity = response.list[0].main.humidity;
+        var oneDayAfterHumidity = response.list[8].main.humidity;
+        var twoDayAfterHumidity = response.list[16].main.humidity;
+        var threeDayAfterHumidity = response.list[24].main.humidity;
+        var fourDayAfterHumidity = response.list[32].main.humidity;
+        var fiveDayAfterHumidity = response.list[39].main.humidity;
 
         //Empty weather today section before adding new information
         $("#today").empty();
@@ -97,34 +107,13 @@ function displayWeatherInfo (locationName)  {
         cardBody.append(cardHeader);
 
         var todayList =$("<ul>");
-        var todayLineOne = $(`<li>Temp:</li>`);
-        var todayLineTwo = $(`<li>Wind:</li>`);
-        var todayLineThree = $(`<li>Humidity:</li>`);
+        var todayLineOne = $(`<li>Temp: ${todayTempDegC} \u00B0 C</li>`);
+        var todayLineTwo = $(`<li>Wind: ${todayWindKPH} KPH</li>`);
+        var todayLineThree = $(`<li>Humidity: ${todayHumidity} %</li>`);
 
         // append unordered list to cardBody and append list itmes to ul
         cardBody.append(todayList);
         todayList.append(todayLineOne, todayLineTwo, todayLineThree);
-    
-          
-
-
-     /*  $("#movies-view").empty()
-  
-      var movieDiv = $("<div class='movie'>");
-  
-  
-      var rating = response.Rated;
-      var released = response.Released;
-      var plot = response.Plot;
-      var imgURL = response.Poster;
-  
-      var pOne = $("<p>").text("Rating: " + rating);
-      var pTwo = $("<p>").text("Released: " + released);
-      var pThree = $("<p>").text("Plot: " + plot);
-      var image = $("<img>").attr("src", imgURL);
-  
-      movieDiv.append(pOne,pTwo,pThree,image);
-      $("#movies-view").prepend(movieDiv); */
 
         });
   

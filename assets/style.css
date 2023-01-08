@@ -8,17 +8,21 @@ li{
 }
 
 .bg-bluegradient {
-    background-image: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
-  }
+    background-image: linear-gradient(90deg, lightblue 0%, blue 35%, #020024 100%);
+}
 
-  .weather-hr {
+.card-body{
+    background-color: lightblue;
+}
+
+.weather-hr {
     height:1px;
     border-width:0;
     color:rgb(194, 189, 189);
     background-color:rgb(194, 189, 189);
-  }
+}
 
-  #search-input{
+#search-input{
     border-width:3px;
     border-color:gray;
-  }
+}
