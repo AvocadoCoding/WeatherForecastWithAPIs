@@ -113,11 +113,17 @@ function displayWeatherInfo (locationName)  {
         // append card header to card div
         cardBody.append(cardHeader);
 
+        var todayList =$("<ul>");
+        var todayLineOne = $(`<li>Temp:</li>`);
+        var todayLineTwo = $(`<li>Wind:</li>`);
+        var todayLineThree = $(`<li>Humidity:</li>`);
+
+        // append unordered list to cardBody and append list itmes to ul
+        cardBody.append(todayList);
+        todayList.append(todayLineOne);
+        todayList.append(todayLineTwo);
+        todayList.append(todayLineThree);
           
-      /*   const lat = response[0].lat;
-        const lon = response[0].lon;
-        console.log(lat);
-        console.log(lon);   */
 
 
      /*  $("#movies-view").empty()
