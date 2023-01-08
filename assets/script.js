@@ -54,12 +54,13 @@ function displayWeatherInfo (locationName)  {
         var fiveDayAfterDate = (moment().add(5, 'days')).format('DD/MM/YYYY'); // Today + 5 days
         
         // weather image on that day and next 5 days
-        var todayImageURL = response.list[0].weather[0].icon; // need to put icon number into open weather url for images
-        var oneDayAfterImageURL
-        var twoDayAfterImageURL
-        var threeDayAfterImageURL
-        var fourDayAfterImageURL
-        var fiveDayAfterImageURL
+        var todayImageURL = `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`; // need to put icon number into open weather url for images
+        console.log(todayImageURL);
+        var oneDayAfterImageURL = `http://openweathermap.org/img/wn/${response.list[8].weather[0].icon}@2x.png`;
+        var twoDayAfterImageURL= `http://openweathermap.org/img/wn/${response.list[16].weather[0].icon}@2x.png`; 
+        var threeDayAfterImageURL= `http://openweathermap.org/img/wn/${response.list[24].weather[0].icon}@2x.png`;
+        var fourDayAfterImageURL= `http://openweathermap.org/img/wn/${response.list[32].weather[0].icon}@2x.png`;
+        var fiveDayAfterImageURL= `http://openweathermap.org/img/wn/${response.list[39].weather[0].icon}@2x.png`;
         
         // temp on that day and next 5 days
         var todayTempDegC = response.list[0].main.temp - 273.15; // convert temp value from kelvins to deg C
@@ -90,7 +91,7 @@ function displayWeatherInfo (locationName)  {
         // append card body to card div
         cardDiv.append(cardBody);
 
-        var cardHeader = $(`<h3 class='card-title'> ${locationAPI} (${todayDate}) <h3> `);
+        var cardHeader = $(`<h3 class='card-title'> ${locationAPI} (${todayDate}) <img src=${todayImageURL} alt="image of weather forecast"> </h3>`);
           
         // append card header to card div
         cardBody.append(cardHeader);
