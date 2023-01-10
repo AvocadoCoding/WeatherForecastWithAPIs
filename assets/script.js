@@ -116,8 +116,6 @@ function displayWeatherInfo (locationName)  {
         todayList.append(todayLineOne, todayLineTwo, todayLineThree);
 
 
-        // ToDO: Create another container for the 5 day forecast, then within that put '5 day forecast' on
-        // ToDO one row, and 5 cards for forecasts in second row
 
         //Empty forecast today section before adding new information
         $("#forecast").empty();
@@ -232,9 +230,9 @@ function displayWeatherInfo (locationName)  {
 
         cardForecastsContainer.append(forecastFive);
 
-        var forecastFCarivedbody = $("<div class='card-body forecasts-body'>");
+        var forecastFiveCardbody = $("<div class='card-body forecasts-body'>");
 
-        forecastFive.append(forecastFourCardbody);
+        forecastFive.append(forecastFiveCardbody);
 
 
         var fiveDayWeatherImage = `<img src=${fiveDayAfterImageURL} alt="image of weather forecast"></img>`
@@ -328,6 +326,7 @@ function appendButton(){
 
   // Take array of locations from local storage and loop through them
   var locations = JSON.parse(localStorage.getItem("locations"));
+  
 
   for (var i = 0; i < locations.length; i++) {
 
@@ -345,6 +344,7 @@ function appendButton(){
     // Adding the button to the "list-group" div
     $(".list-group").append(newBtn);
   }
+  
 };
 
 
