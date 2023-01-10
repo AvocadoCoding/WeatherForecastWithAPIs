@@ -65,7 +65,7 @@ function displayWeatherInfo (locationName)  {
         // temp on that day and next 5 days, convert temp value from kelvin to deg C and round to 2dp
         var todayTempDegC = Math.round(((response.list[0].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
         var oneDayAfterTempDegC = Math.round(((response.list[8].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
-        var twoDayAfterTempDegCL = Math.round(((response.list[16].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
+        var twoDayAfterTempDegC = Math.round(((response.list[16].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
         var threeDayAfterTempDegC = Math.round(((response.list[24].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
         var fourDayAfterTempDegC = Math.round(((response.list[32].main.temp - 273.15) + Number.EPSILON) * 100) / 100; 
         var fiveDayAfterTempDegC = Math.round(((response.list[39].main.temp - 273.15) + Number.EPSILON) * 100) / 100;  
@@ -114,6 +114,139 @@ function displayWeatherInfo (locationName)  {
         // append unordered list to cardBody and append list itmes to ul
         cardBody.append(todayList);
         todayList.append(todayLineOne, todayLineTwo, todayLineThree);
+
+
+        // ToDO: Create another container for the 5 day forecast, then within that put '5 day forecast' on
+        // ToDO one row, and 5 cards for forecasts in second row
+
+        //Empty forecast today section before adding new information
+        $("#forecast").empty();
+
+        var containerForecast= $("<div class='card'>");
+
+        $("#forecast").append(containerForecast);
+
+        var header = $("<h4>5-day forecast:</h4>");
+
+        // rowHeader.append(header);
+
+        containerForecast.append(header);
+
+        var cardForecastsContainer= $("<div class='container-fluid forecastsBlock'>");
+
+        containerForecast.append(cardForecastsContainer);
+
+        // Forecast card 1
+
+        var forecastOne = $("<div class='card forecasts col-lg-2 col-md-2 col-sm-12'>");
+
+        cardForecastsContainer.append(forecastOne);
+
+        var forecastOneCardbody = $("<div class='card-body forecasts-body'>");
+
+        forecastOne.append(forecastOneCardbody);
+
+
+        var oneDayWeatherImage = `<img src=${oneDayAfterImageURL} alt="image of weather forecast"></img>`
+
+        var dayOneList =$("<ul>");
+        var dayOneLineOne = $(`<li>Temp: ${oneDayAfterTempDegC} \u00B0 C</li>`);
+        var dayOneLineTwo = $(`<li>Wind: ${oneDayAfterWindKPH} KPH</li>`);
+        var dayOneLineThree = $(`<li>Humidity: ${oneDayAfterHumidity} %</li>`);
+
+        dayOneList.append(dayOneLineOne, dayOneLineTwo, dayOneLineThree);
+
+        forecastOneCardbody.append(oneDayAfterDate, oneDayWeatherImage, dayOneList);
+
+
+        // Forecast card 2
+
+        var forecastTwo = $("<div class='card forecasts col-lg-2 col-md-2 col-sm-12'>");
+
+        cardForecastsContainer.append(forecastTwo);
+
+        var forecastTwoCardbody = $("<div class='card-body forecasts-body'>");
+
+        forecastTwo.append(forecastTwoCardbody);
+
+
+        var twoDayWeatherImage = `<img src=${twoDayAfterImageURL} alt="image of weather forecast"></img>`
+
+        var dayTwoList =$("<ul>");
+        var dayTwoLineOne = $(`<li>Temp: ${twoDayAfterTempDegC} \u00B0 C</li>`);
+        var dayTwoLineTwo = $(`<li>Wind: ${twoDayAfterWindKPH} KPH</li>`);
+        var dayTwoLineThree = $(`<li>Humidity: ${twoDayAfterHumidity} %</li>`);
+
+        dayTwoList.append(dayTwoLineOne, dayTwoLineTwo, dayTwoLineThree);
+
+        forecastTwoCardbody.append(twoDayAfterDate, twoDayWeatherImage, dayTwoList);
+
+        // Forecast card 3
+
+        var forecastThree = $("<div class='card forecasts col-lg-2 col-md-2 col-sm-12'>");
+
+        cardForecastsContainer.append(forecastThree);
+
+        var forecastThreeCardbody = $("<div class='card-body forecasts-body'>");
+
+        forecastThree.append(forecastThreeCardbody);
+
+
+        var threeDayWeatherImage = `<img src=${threeDayAfterImageURL} alt="image of weather forecast"></img>`
+
+        var dayThreeList =$("<ul>");
+        var dayThreeLineOne = $(`<li>Temp: ${threeDayAfterTempDegC} \u00B0 C</li>`);
+        var dayThreeLineTwo = $(`<li>Wind: ${threeDayAfterWindKPH} KPH</li>`);
+        var dayThreeLineThree = $(`<li>Humidity: ${threeDayAfterHumidity} %</li>`);
+
+        dayThreeList.append(dayThreeLineOne, dayThreeLineTwo, dayThreeLineThree);
+
+        forecastThreeCardbody.append(threeDayAfterDate, threeDayWeatherImage, dayThreeList);
+
+        // Forecast card 4
+
+        var forecastFour = $("<div class='card forecasts col-lg-2 col-md-2 col-sm-12'>");
+
+        cardForecastsContainer.append(forecastFour);
+
+        var forecastFourCardbody = $("<div class='card-body forecasts-body'>");
+
+        forecastFour.append(forecastFourCardbody);
+
+
+        var fourDayWeatherImage = `<img src=${fourDayAfterImageURL} alt="image of weather forecast"></img>`
+
+        var dayFourList =$("<ul>");
+        var dayFourLineOne = $(`<li>Temp: ${fourDayAfterTempDegC} \u00B0 C</li>`);
+        var dayFourLineTwo = $(`<li>Wind: ${fourDayAfterWindKPH} KPH</li>`);
+        var dayFourLineThree = $(`<li>Humidity: ${fourDayAfterHumidity} %</li>`);
+
+        dayFourList.append(dayFourLineOne, dayFourLineTwo, dayFourLineThree);
+
+        forecastFourCardbody.append(fourDayAfterDate, fourDayWeatherImage, dayFourList);
+
+
+    // Forecast card 5
+
+        var forecastFive = $("<div class='card forecasts col-lg-2 col-md-2 col-sm-12'>");
+
+        cardForecastsContainer.append(forecastFive);
+
+        var forecastFCarivedbody = $("<div class='card-body forecasts-body'>");
+
+        forecastFive.append(forecastFourCardbody);
+
+
+        var fiveDayWeatherImage = `<img src=${fiveDayAfterImageURL} alt="image of weather forecast"></img>`
+
+        var dayFiveList =$("<ul>");
+        var dayFiveLineOne = $(`<li>Temp: ${fiveDayAfterTempDegC} \u00B0 C</li>`);
+        var dayFiveLineTwo = $(`<li>Wind: ${fiveDayAfterWindKPH} KPH</li>`);
+        var dayFiveLineThree = $(`<li>Humidity: ${fiveDayAfterHumidity} %</li>`);
+
+        dayFiveList.append(dayFiveLineOne, dayFiveLineTwo, dayFiveLineThree);
+
+        forecastFiveCardbody.append(fiveDayAfterDate, fiveDayWeatherImage, dayFiveList);
 
         });
   

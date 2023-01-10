@@ -22,6 +22,18 @@ li{
     background-color:rgb(194, 189, 189);
 }
 
+.forecastsBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.forecasts-body{
+    width: 100%;
+    padding: 0;
+}
+
 #search-input{
     border-width:3px;
     border-color:gray;
